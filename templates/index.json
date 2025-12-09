@@ -15,7 +15,7 @@
         "logo": "shopify://shop_images/A_vector_graphic_of_an_emblem_features_a_black_sym.png",
         "menu": "main-menu",
         "padding_top": 32,
-        "padding_bottom": 20
+        "padding_bottom": 16
       }
     },
     "hero": {
