@@ -19,6 +19,9 @@
     },
     "hero": {
       "type": "hero-banner",
+      "custom_css": [
+        ".hero-banner__heading {font-family: \"Work Sans\", sans-serif; font-weight: 300; letter-spacing: 0.20em; text-transform: uppercase;}"
+      ],
       "settings": {
         "subtitle": "Find Your",
         "heading": "ANQR",
