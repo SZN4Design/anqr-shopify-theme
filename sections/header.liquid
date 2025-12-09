@@ -112,8 +112,7 @@
     gap: 16px;
   }
 {%- endstyle -%}
-
-<header class="header" data-section-id="{{ section.id }}">
+<header class="header{% if template.name == 'index' %} site-header--overlay{% endif %}" data-section-id="{{ section.id }}">
   <div class="header__container">
     <button class="header__mobile-toggle" aria-label="{{ 'accessibility.menu' | t }}" data-mobile-toggle>
       {% render 'icon', icon: 'menu' %}
