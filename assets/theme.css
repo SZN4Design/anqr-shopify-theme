@@ -220,3 +220,21 @@ button {
    Desktop: >= 990px
    Large: >= 1200px
    ======================================== */
+/* Transparent header overlay on home page */
+
+.site-header--overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  box-shadow: none;
+  z-index: 10; /* above hero overlay */
+}
+
+/* Optional: make nav links darker/lighter over the hero image */
+.site-header--overlay .header__menu-item,
+.site-header--overlay .header__heading,
+.site-header--overlay .header__icon {
+  color: var(--color-foreground);
+}
