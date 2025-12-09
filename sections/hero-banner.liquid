@@ -1,10 +1,32 @@
 {%- style -%}
-  .hero-banner {
+.hero-banner {
+  {% if section.settings.image != blank %}
+    background-image: url('{{ section.settings.image | image_url: width: 2000 }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  {% else %}
     background-color: var(--color-background);
-    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
-    text-align: center;
-  }
-  
+  {% endif %}
+
+  padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  text-align: center;
+  position: relative;
+}
+
+/* Cream overlay (#FAF8F3 at 50%) */
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(250, 248, 243, 0.5);
+  z-index: 1;
+}
+
+.hero-banner__container {
+  position: relative;
+  z-index: 2;
+}
   .hero-banner__container {
     max-width: 1400px;
     margin: 0 auto;
@@ -91,17 +113,6 @@
       </a>
     {%- endif -%}
     
-    {%- if section.settings.image != blank -%}
-      <div class="hero-banner__image">
-        <img 
-          src="{{ section.settings.image | image_url: width: 1200 }}" 
-          alt="{{ section.settings.image.alt | default: section.settings.heading }}"
-          width="{{ section.settings.image.width }}"
-          height="{{ section.settings.image.height }}"
-          loading="eager"
-        >
-      </div>
-    {%- endif -%}
   </div>
 </section>
 
