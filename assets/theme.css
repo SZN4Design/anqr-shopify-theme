@@ -18,9 +18,9 @@
   --color-terracotta: #C4846C;
   
   /* Typography */
-  --font-heading: 'Helvetica Neue', serif;
-  --font-body: 'Helvetica Neue', sans-serif;
-  --font-heading-weight: 400;
+  --font-heading: "Futura", "Futura PT", sans-serif;
+  --font-body: "Futura", "Futura PT", sans-serif;
+  --font-heading-weight: 500;
   --font-body-weight: 400;
   
   /* Spacing Scale */
