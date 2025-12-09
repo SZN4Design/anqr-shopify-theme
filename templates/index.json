@@ -14,7 +14,7 @@
       "settings": {
         "logo": "shopify://shop_images/Logo_2_635834f7-bf72-4bb1-9ba9-12cbbf55a7c3.png",
         "menu": "main-menu",
-        "padding_top": 20,
+        "padding_top": 32,
         "padding_bottom": 20
       }
     },
