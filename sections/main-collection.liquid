@@ -1,0 +1,210 @@
+{%- style -%}
+  .main-collection {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+  
+  .main-collection__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  .main-collection__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .main-collection__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
+    }
+  }
+  
+  @media screen and (min-width: 990px) {
+    .main-collection__grid {
+      grid-template-columns: repeat({{ section.settings.products_per_row }}, 1fr);
+    }
+  }
+  
+  .main-collection__filters {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 32px;
+    gap: 16px;
+  }
+  
+  .main-collection__sort {
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 12px 16px;
+    border: 1px solid var(--color-foreground);
+    background: transparent;
+    color: var(--color-foreground);
+    cursor: pointer;
+  }
+  
+  .main-collection__pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 48px;
+  }
+  
+  .main-collection__pagination a,
+  .main-collection__pagination span {
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 12px 16px;
+    border: 1px solid var(--color-foreground);
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .main-collection__pagination a:hover,
+  .main-collection__pagination span.is-current {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+  }
+  
+  .main-collection__empty {
+    text-align: center;
+    padding: 64px 24px;
+  }
+  
+  .main-collection__empty-text {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-foreground);
+    opacity: 0.7;
+  }
+{%- endstyle -%}
+
+<section class="main-collection" data-section-id="{{ section.id }}">
+  <div class="main-collection__container">
+    {%- if section.settings.enable_sorting -%}
+      <div class="main-collection__filters">
+        <select class="main-collection__sort" data-sort-select>
+          {%- for option in collection.sort_options -%}
+            <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>
+              {{ option.name }}
+            </option>
+          {%- endfor -%}
+        </select>
+      </div>
+    {%- endif -%}
+    
+    {%- if collection.products.size > 0 -%}
+      <div class="main-collection__grid">
+        {%- paginate collection.products by section.settings.products_per_page -%}
+          {%- for product in collection.products -%}
+            {% render 'product-card', product: product %}
+          {%- endfor -%}
+        {%- endpaginate -%}
+      </div>
+      
+      {%- paginate collection.products by section.settings.products_per_page -%}
+        {%- if paginate.pages > 1 -%}
+          <div class="main-collection__pagination">
+            {%- if paginate.previous -%}
+              <a href="{{ paginate.previous.url }}">Previous</a>
+            {%- endif -%}
+            
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}">{{ part.title }}</a>
+              {%- else -%}
+                <span class="{% if part.title == paginate.current_page %}is-current{% endif %}">
+                  {{ part.title }}
+                </span>
+              {%- endif -%}
+            {%- endfor -%}
+            
+            {%- if paginate.next -%}
+              <a href="{{ paginate.next.url }}">Next</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endpaginate -%}
+    {%- else -%}
+      <div class="main-collection__empty">
+        <p class="main-collection__empty-text">{{ 'collections.general.no_matches' | t }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sortSelect = document.querySelector('[data-sort-select]');
+    if (sortSelect) {
+      sortSelect.addEventListener('change', function() {
+        const url = new URL(window.location.href);
+        url.searchParams.set('sort_by', this.value);
+        window.location.href = url.toString();
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Collection Products",
+  "tag": "section",
+  "class": "section-main-collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_row",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Products per row (desktop)"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 6,
+      "max": 24,
+      "step": 3,
+      "default": 12,
+      "label": "Products per page"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "label": "Enable filtering",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "label": "Enable sorting",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,193 @@
+{%- style -%}
+  .header {
+    background-color: var(--color-sand);
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+  
+  .header__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .header__nav {
+    display: none;
+  }
+  
+  @media screen and (min-width: 990px) {
+    .header__nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+  }
+  
+  .header__nav-link {
+    font-family: var(--font-body);
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .header__nav-link:hover {
+    color: var(--color-foreground);
+    opacity: 0.7;
+  }
+  
+  .header__logo {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--color-foreground);
+    text-decoration: none;
+  }
+  
+  @media screen and (min-width: 990px) {
+    .header__logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 32px;
+    }
+  }
+  
+  .header__icons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .header__icon-link {
+    position: relative;
+    color: var(--color-foreground);
+  }
+  
+  .header__cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    font-family: var(--font-body);
+    font-size: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header__mobile-toggle {
+    display: block;
+    background: none;
+    border: none;
+    padding: 8px;
+    margin-left: -8px;
+    cursor: pointer;
+  }
+  
+  @media screen and (min-width: 990px) {
+    .header__mobile-toggle {
+      display: none;
+    }
+  }
+  
+  .header__mobile-nav {
+    display: none;
+    padding-top: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 16px;
+  }
+  
+  .header__mobile-nav.is-open {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+{%- endstyle -%}
+
+<header class="header" data-section-id="{{ section.id }}">
+  <div class="header__container">
+    <button class="header__mobile-toggle" aria-label="{{ 'accessibility.menu' | t }}" data-mobile-toggle>
+      {% render 'icon', icon: 'menu' %}
+    </button>
+    
+    <nav class="header__nav">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}" class="header__nav-link">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+    
+    <a href="{{ routes.root_url }}" class="header__logo">
+      {%- if section.settings.logo != blank -%}
+        <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" width="100" height="auto" loading="lazy">
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </a>
+    
+    <div class="header__icons">
+      <a href="{{ routes.search_url }}" class="header__icon-link header__search-link" aria-label="{{ 'general.search.search' | t }}">
+        {% render 'icon', icon: 'search' %}
+      </a>
+      <a href="{{ routes.cart_url }}" class="header__icon-link header__cart-link" aria-label="{{ 'cart.general.title' | t }}">
+        {% render 'icon', icon: 'bag' %}
+        <span class="header__cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+  
+  <nav class="header__mobile-nav" data-mobile-nav>
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}" class="header__nav-link">{{ link.title }}</a>
+    {%- endfor -%}
+    <a href="{{ routes.search_url }}" class="header__nav-link">{{ 'general.search.search' | t }}</a>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 16
+    }
+  ]
+}
+{% endschema %}

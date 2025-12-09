@@ -1,0 +1,259 @@
+{%- style -%}
+  .main-product {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+  
+  .main-product__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  .main-product__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  
+  @media screen and (min-width: 990px) {
+    .main-product__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+  }
+  
+  .main-product__media {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .main-product__image {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background-color: var(--color-secondary);
+  }
+  
+  .main-product__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .main-product__info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  @media screen and (min-width: 990px) {
+    .main-product__info {
+      position: sticky;
+      top: 32px;
+      align-self: start;
+    }
+  }
+  
+  .main-product__title {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--color-foreground);
+    margin: 0;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .main-product__title {
+      font-size: 40px;
+    }
+  }
+  
+  .main-product__price {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--color-foreground);
+  }
+  
+  .main-product__description {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-foreground);
+    opacity: 0.8;
+  }
+  
+  .main-product__variants {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .main-product__option-label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-foreground);
+  }
+  
+  .main-product__option-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .main-product__option-value {
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 12px 20px;
+    border: 1px solid var(--color-foreground);
+    background: transparent;
+    color: var(--color-foreground);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .main-product__option-value:hover,
+  .main-product__option-value.is-selected {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+  }
+  
+  .main-product__add-button {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 20px 32px;
+    border: 1px solid var(--color-foreground);
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .main-product__add-button:hover {
+    background: transparent;
+    color: var(--color-foreground);
+  }
+  
+  .main-product__add-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+{%- endstyle -%}
+
+<section class="main-product" data-section-id="{{ section.id }}">
+  <div class="main-product__container">
+    <div class="main-product__grid">
+      <div class="main-product__media">
+        {%- for media in product.media -%}
+          <div class="main-product__image">
+            <img
+              src="{{ media | image_url: width: 800 }}"
+              alt="{{ media.alt | escape }}"
+              width="{{ media.width }}"
+              height="{{ media.height }}"
+              loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            >
+          </div>
+        {%- endfor -%}
+      </div>
+      
+      <div class="main-product__info">
+        <h1 class="main-product__title">{{ product.title }}</h1>
+        
+        <p class="main-product__price">{{ product.price | money }}</p>
+        
+        {%- if product.description != blank -%}
+          <div class="main-product__description">
+            {{ product.description }}
+          </div>
+        {%- endif -%}
+        
+        {%- form 'product', product, id: 'product-form', class: 'main-product__form' -%}
+          <div class="main-product__variants">
+            {%- for option in product.options_with_values -%}
+              <div class="main-product__option">
+                <label class="main-product__option-label">{{ option.name }}</label>
+                <div class="main-product__option-values">
+                  {%- for value in option.values -%}
+                    <button
+                      type="button"
+                      class="main-product__option-value{% if forloop.first %} is-selected{% endif %}"
+                      data-option-value="{{ value }}"
+                    >
+                      {{ value }}
+                    </button>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+          
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          
+          <button
+            type="submit"
+            class="main-product__add-button"
+            {% unless product.available %}disabled{% endunless %}
+          >
+            {%- if product.available -%}
+              {{ 'products.product.add_to_cart' | t }}
+            {%- else -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- endif -%}
+          </button>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "tag": "section",
+  "class": "section-main-product",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_info",
+      "label": "Enable sticky product info",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "gallery_layout",
+      "options": [
+        { "value": "stacked", "label": "Stacked" },
+        { "value": "grid", "label": "Grid" }
+      ],
+      "default": "stacked",
+      "label": "Gallery layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

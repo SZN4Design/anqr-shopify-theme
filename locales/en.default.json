@@ -1,0 +1,71 @@
+{
+  "general": {
+    "search": {
+      "search": "Search",
+      "placeholder": "Search our store",
+      "no_results": "No results found for \"{{ terms }}\""
+    },
+    "accessibility": {
+      "skip_to_text": "Skip to content",
+      "menu": "Menu"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "description": "Description",
+      "on_sale": "Sale",
+      "view_product": "View product"
+    }
+  },
+  "collections": {
+    "general": {
+      "view_all": "View all",
+      "no_matches": "Sorry, there are no products in this collection"
+    },
+    "sorting": {
+      "title": "Sort by",
+      "featured": "Featured",
+      "best_selling": "Best selling",
+      "alphabetically_az": "Alphabetically, A-Z",
+      "alphabetically_za": "Alphabetically, Z-A",
+      "price_low_high": "Price, low to high",
+      "price_high_low": "Price, high to low",
+      "date_old_new": "Date, old to new",
+      "date_new_old": "Date, new to old"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Cart",
+      "empty": "Your cart is empty",
+      "continue_shopping": "Continue shopping",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "remove": "Remove",
+      "note": "Order note"
+    }
+  },
+  "newsletter": {
+    "label": "Email",
+    "button_label": "Subscribe",
+    "success": "Thanks for subscribing!"
+  },
+  "footer": {
+    "copyright": "All rights reserved.",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service"
+  },
+  "onboarding": {
+    "product_title": "Product title",
+    "collection_title": "Collection title"
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content",
+    "menu": "Menu",
+    "close": "Close"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "subtitle": "Find Your",
+        "heading": "ANQR",
+        "button_label": "Explore Collection",
+        "button_link": "shopify://collections/all",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "color-swatches": {
+      "type": "color-swatches",
+      "blocks": {
+        "sage": {
+          "type": "color",
+          "settings": {
+            "color": "#8B9A82",
+            "label": "Sage",
+            "link": ""
+          }
+        },
+        "rose": {
+          "type": "color",
+          "settings": {
+            "color": "#D4A5A5",
+            "label": "Rose",
+            "link": ""
+          }
+        },
+        "cream": {
+          "type": "color",
+          "settings": {
+            "color": "#F5F0E8",
+            "label": "Cream",
+            "link": ""
+          }
+        },
+        "terracotta": {
+          "type": "color",
+          "settings": {
+            "color": "#C4846C",
+            "label": "Terracotta",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["sage", "rose", "cream", "terracotta"],
+      "settings": {
+        "heading": "Shop by Color",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "subtitle": "Essential Movement",
+        "heading": "",
+        "products_to_show": 3,
+        "show_view_all": false,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "philosophy": {
+      "type": "philosophy",
+      "settings": {
+        "heading": "Philosophy",
+        "text": "ANQR was created for those who seek balance. Each piece is thoughtfully designed using sustainable materials, honoring both your practice and the planet.",
+        "button_label": "",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Stay Connected",
+        "text": "Join our community for exclusive access and updates",
+        "placeholder": "Enter your email",
+        "button_label": "Subscribe",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "shop": {
+          "type": "menu",
+          "settings": {
+            "heading": "Shop"
+          }
+        },
+        "about": {
+          "type": "menu",
+          "settings": {
+            "heading": "About"
+          }
+        },
+        "support": {
+          "type": "menu",
+          "settings": {
+            "heading": "Support"
+          }
+        }
+      },
+      "block_order": ["shop", "about", "support"],
+      "settings": {
+        "brand_text": "Mindful movement wear designed for balance.",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "header",
+    "hero",
+    "color-swatches",
+    "featured-collection",
+    "philosophy",
+    "newsletter",
+    "footer"
+  ]
+}

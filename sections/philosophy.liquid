@@ -1,0 +1,137 @@
+{%- style -%}
+  .philosophy {
+    background-color: var(--color-sand);
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+  
+  .philosophy__container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+  
+  .philosophy__heading {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--color-foreground);
+    margin: 0 0 32px;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .philosophy__heading {
+      font-size: 40px;
+    }
+  }
+  
+  .philosophy__text {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--color-foreground);
+    opacity: 0.85;
+    margin: 0;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .philosophy__text {
+      font-size: 18px;
+    }
+  }
+  
+  .philosophy__button {
+    display: inline-block;
+    margin-top: 32px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-foreground);
+    background: transparent;
+    border: 1px solid var(--color-foreground);
+    padding: 16px 32px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .philosophy__button:hover {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+  }
+{%- endstyle -%}
+
+<section class="philosophy" data-section-id="{{ section.id }}">
+  <div class="philosophy__container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="philosophy__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    
+    {%- if section.settings.text != blank -%}
+      <p class="philosophy__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+    
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link }}" class="philosophy__button">
+        {{ section.settings.button_label }}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Philosophy",
+  "tag": "section",
+  "class": "section-philosophy",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Philosophy"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "ANQR was created for those who seek balance. Each piece is thoughtfully designed using sustainable materials, honoring both your practice and the planet."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Philosophy"
+    }
+  ]
+}
+{% endschema %}

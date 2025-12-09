@@ -1,0 +1,158 @@
+{%- comment -%}
+  Renders a product card
+
+  Accepts:
+  - product: {Object} Product Liquid object
+  - show_secondary_image: {Boolean} Show secondary image on hover (optional)
+  - class: {String} Additional classes (optional)
+
+  Usage:
+  {% render 'product-card', product: product %}
+{%- endcomment -%}
+
+{%- liquid
+  assign show_secondary_image = show_secondary_image | default: false
+-%}
+
+<article class="product-card {{ class }}">
+  <a href="{{ product.url }}" class="product-card__link">
+    <div class="product-card__image-wrapper">
+      {%- if product.featured_media -%}
+        <img
+          src="{{ product.featured_media | image_url: width: 600 }}"
+          alt="{{ product.featured_media.alt | escape }}"
+          class="product-card__image product-card__image--primary"
+          width="{{ product.featured_media.width }}"
+          height="{{ product.featured_media.height }}"
+          loading="lazy"
+        >
+        
+        {%- if show_secondary_image and product.media[1] -%}
+          <img
+            src="{{ product.media[1] | image_url: width: 600 }}"
+            alt="{{ product.media[1].alt | escape }}"
+            class="product-card__image product-card__image--secondary"
+            width="{{ product.media[1].width }}"
+            height="{{ product.media[1].height }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'product-card__placeholder' }}
+      {%- endif -%}
+    </div>
+    
+    <div class="product-card__info">
+      <h3 class="product-card__title">{{ product.title }}</h3>
+      
+      {%- if product.options_with_values.size > 0 -%}
+        {%- for option in product.options_with_values -%}
+          {%- if option.name == 'Color' -%}
+            <p class="product-card__color">{{ option.values.first }}</p>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      
+      <p class="product-card__price">
+        {%- if product.compare_at_price > product.price -%}
+          <span class="product-card__price--sale">{{ product.price | money }}</span>
+          <span class="product-card__price--compare">{{ product.compare_at_price | money }}</span>
+        {%- else -%}
+          {{ product.price | money }}
+        {%- endif -%}
+      </p>
+    </div>
+  </a>
+</article>
+
+<style>
+  .product-card {
+    display: block;
+  }
+  
+  .product-card__link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .product-card__image-wrapper {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background-color: var(--color-secondary);
+    margin-bottom: 16px;
+  }
+  
+  .product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .product-card__image--secondary {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .product-card__link:hover .product-card__image--primary {
+    transform: scale(1.05);
+  }
+  
+  .product-card__link:hover .product-card__image--secondary {
+    opacity: 1;
+  }
+  
+  .product-card__placeholder {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+    opacity: 0.1;
+  }
+  
+  .product-card__info {
+    text-align: left;
+  }
+  
+  .product-card__title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-foreground);
+    margin: 0 0 4px;
+    transition: color 0.3s ease;
+  }
+  
+  .product-card__link:hover .product-card__title {
+    opacity: 0.7;
+  }
+  
+  .product-card__color {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-foreground);
+    opacity: 0.7;
+    margin: 0 0 4px;
+  }
+  
+  .product-card__price {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-foreground);
+    margin: 0;
+  }
+  
+  .product-card__price--sale {
+    color: var(--color-accent);
+  }
+  
+  .product-card__price--compare {
+    text-decoration: line-through;
+    opacity: 0.5;
+    margin-left: 8px;
+  }
+</style>

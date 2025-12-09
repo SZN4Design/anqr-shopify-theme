@@ -1,0 +1,71 @@
+{%- comment -%}
+  Renders an icon
+
+  Accepts:
+  - icon: {String} Icon name (required)
+  - size: {Number} Icon size in pixels (optional, default: 20)
+  - class: {String} Additional classes (optional)
+
+  Usage:
+  {% render 'icon', icon: 'menu' %}
+  {% render 'icon', icon: 'bag', size: 24 %}
+{%- endcomment -%}
+
+{%- liquid
+  assign size = size | default: 20
+-%}
+
+{%- case icon -%}
+  {%- when 'menu' -%}
+    <svg class="icon icon--menu {{ class }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  
+  {%- when 'close' -%}
+    <svg class="icon icon--close {{ class }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  
+  {%- when 'search' -%}
+    <svg class="icon icon--search {{ class }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+  
+  {%- when 'bag' -%}
+    <svg class="icon icon--bag {{ class }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <path d="M16 10a4 4 0 0 1-8 0"></path>
+    </svg>
+  
+  {%- when 'chevron-down' -%}
+    <svg class="icon icon--chevron-down {{ class }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  
+  {%- when 'chevron-right' -%}
+    <svg class="icon icon--chevron-right {{ class }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  
+  {%- when 'plus' -%}
+    <svg class="icon icon--plus {{ class }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  
+  {%- when 'minus' -%}
+    <svg class="icon icon--minus {{ class }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  
+  {%- when 'check' -%}
+    <svg class="icon icon--check {{ class }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+  
+{%- endcase -%}

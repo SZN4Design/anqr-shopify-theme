@@ -1,0 +1,97 @@
+{%- comment -%}
+  Renders a button
+
+  Accepts:
+  - label: {String} Button label (required)
+  - url: {String} Button URL (optional)
+  - style: {String} Button style - 'primary', 'secondary', 'outline' (optional, default: 'outline')
+  - type: {String} Button type for form buttons - 'submit', 'button' (optional)
+  - class: {String} Additional classes (optional)
+  - disabled: {Boolean} Disabled state (optional)
+  - aria_label: {String} Aria label for accessibility (optional)
+
+  Usage:
+  {% render 'button', label: 'Shop Now', url: '/collections/all' %}
+  {% render 'button', label: 'Add to Cart', type: 'submit', style: 'primary' %}
+{%- endcomment -%}
+
+{%- liquid
+  assign style = style | default: 'outline'
+  assign button_class = 'button button--' | append: style
+  if class
+    assign button_class = button_class | append: ' ' | append: class
+  endif
+-%}
+
+{%- if url -%}
+  <a 
+    href="{{ url }}" 
+    class="{{ button_class }}"
+    {% if aria_label %}aria-label="{{ aria_label }}"{% endif %}
+  >
+    {{ label }}
+  </a>
+{%- else -%}
+  <button 
+    type="{{ type | default: 'button' }}" 
+    class="{{ button_class }}"
+    {% if disabled %}disabled{% endif %}
+    {% if aria_label %}aria-label="{{ aria_label }}"{% endif %}
+  >
+    {{ label }}
+  </button>
+{%- endif -%}
+
+<style>
+  .button {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 32px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .button--outline {
+    background: transparent;
+    color: var(--color-foreground);
+    border: 1px solid var(--color-foreground);
+  }
+  
+  .button--outline:hover:not(:disabled) {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+  }
+  
+  .button--primary {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    border: 1px solid var(--color-foreground);
+  }
+  
+  .button--primary:hover:not(:disabled) {
+    background: transparent;
+    color: var(--color-foreground);
+  }
+  
+  .button--secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-foreground);
+    border: 1px solid transparent;
+  }
+  
+  .button--secondary:hover:not(:disabled) {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+  }
+</style>
