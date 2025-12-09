@@ -9,9 +9,14 @@
     background-color: var(--color-background);
   {% endif %}
 
+  /* NEW: make hero fill viewport and allow header to sit on top */
+  min-height: 100vh;
   padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
   text-align: center;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Cream overlay (#FAF8F3 at 50%) */
