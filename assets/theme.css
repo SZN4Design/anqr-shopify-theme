@@ -18,11 +18,17 @@
   --color-terracotta: #C4846C;
   
   /* Typography */
-  --font-heading: "Futura", "Futura PT", sans-serif;
-  --font-body: "Futura", "Futura PT", sans-serif;
-  --font-heading-weight: 500;
-  --font-body-weight: 400;
-  
+:root {
+  --font-heading: "Work Sans", sans-serif;
+  --font-body: "Work Sans", sans-serif;
+
+  --font-heading-weight: 300; /* light & luxury */
+  --font-body-weight: 400;    /* clean readable body text */
+
+  --font-heading-style: normal;
+  --font-body-style: normal;
+}
+
   /* Spacing Scale */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
