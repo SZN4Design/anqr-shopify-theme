@@ -1,8 +1,18 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "header": {
       "type": "header",
       "settings": {
+        "menu": "main-menu",
         "padding_top": 16,
         "padding_bottom": 16
       }
@@ -14,6 +24,7 @@
         "heading": "ANQR",
         "button_label": "Explore Collection",
         "button_link": "shopify://collections/all",
+        "image": "shopify://shop_images/ChatGPT_Image_Nov_30_2025_10_06_00_PM.png",
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -24,7 +35,7 @@
         "sage": {
           "type": "color",
           "settings": {
-            "color": "#8B9A82",
+            "color": "#8b9a82",
             "label": "Sage",
             "link": ""
           }
@@ -32,7 +43,7 @@
         "rose": {
           "type": "color",
           "settings": {
-            "color": "#D4A5A5",
+            "color": "#d4a5a5",
             "label": "Rose",
             "link": ""
           }
@@ -40,7 +51,7 @@
         "cream": {
           "type": "color",
           "settings": {
-            "color": "#F5F0E8",
+            "color": "#f5f0e8",
             "label": "Cream",
             "link": ""
           }
@@ -48,13 +59,18 @@
         "terracotta": {
           "type": "color",
           "settings": {
-            "color": "#C4846C",
+            "color": "#c4846c",
             "label": "Terracotta",
             "link": ""
           }
         }
       },
-      "block_order": ["sage", "rose", "cream", "terracotta"],
+      "block_order": [
+        "sage",
+        "rose",
+        "cream",
+        "terracotta"
+      ],
       "settings": {
         "heading": "Shop by Color",
         "padding_top": 64,
@@ -66,6 +82,7 @@
       "settings": {
         "subtitle": "Essential Movement",
         "heading": "",
+        "collection": "",
         "products_to_show": 3,
         "show_view_all": false,
         "padding_top": 64,
@@ -78,6 +95,7 @@
         "heading": "Philosophy",
         "text": "ANQR was created for those who seek balance. Each piece is thoughtfully designed using sustainable materials, honoring both your practice and the planet.",
         "button_label": "",
+        "button_link": "",
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -99,25 +117,34 @@
         "shop": {
           "type": "menu",
           "settings": {
-            "heading": "Shop"
+            "heading": "Shop",
+            "menu": ""
           }
         },
         "about": {
           "type": "menu",
           "settings": {
-            "heading": "About"
+            "heading": "About",
+            "menu": ""
           }
         },
         "support": {
           "type": "menu",
           "settings": {
-            "heading": "Support"
+            "heading": "Support",
+            "menu": ""
           }
         }
       },
-      "block_order": ["shop", "about", "support"],
+      "block_order": [
+        "shop",
+        "about",
+        "support"
+      ],
       "settings": {
         "brand_text": "Mindful movement wear designed for balance.",
+        "privacy_link": "",
+        "terms_link": "",
         "padding_top": 48,
         "padding_bottom": 48
       }
