@@ -11,6 +11,9 @@
   "sections": {
     "header": {
       "type": "header",
+      "custom_css": [
+        ".header__nav-link {font-size: 1.1rem;}"
+      ],
       "settings": {
         "logo": "shopify://shop_images/A_vector_graphic_of_an_emblem_features_a_black_sym.png",
         "menu": "main-menu",
