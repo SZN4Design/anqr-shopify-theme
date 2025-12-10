@@ -89,9 +89,9 @@
       "settings": {
         "subtitle": "Essential Movement",
         "heading": "",
-        "collection": "",
+        "collection": "classic-collection",
         "products_to_show": 3,
-        "show_view_all": false,
+        "show_view_all": true,
         "padding_top": 64,
         "padding_bottom": 64
       }
