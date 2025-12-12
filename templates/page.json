@@ -9,13 +9,10 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
-      "settings": {
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
+    "about_wrapper": {
+      "type": "about-wrapper",
+      "settings": {}
     }
   },
-  "order": ["main"]
+  "order": ["about_wrapper"]
 }
