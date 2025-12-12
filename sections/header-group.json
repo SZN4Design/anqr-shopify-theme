@@ -8,8 +8,13 @@
  * ------------------------------------------------------------
  */
 {
-  "name": "header-group",
   "type": "header",
-  "sections": {},
-  "order": []
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {}
+    }
+  },
+  "order": ["header"]
 }
