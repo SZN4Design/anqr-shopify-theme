@@ -244,3 +244,61 @@ button {
 .site-header--overlay .header__icon {
   color: var(--color-foreground);
 }
+
+.page__container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.page__header {
+  margin-bottom: 32px;
+}
+
+.page__title {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: clamp(36px, 4vw, 56px);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  margin: 0 0 12px;
+}
+
+.page__subtitle {
+  font-family: var(--font-body);
+  font-size: 16px;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.rte {
+  font-family: var(--font-body);
+  font-weight: var(--font-body-weight);
+  line-height: 1.75;
+  font-size: 18px;
+}
+
+.rte h2 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 28px;
+  margin: 40px 0 16px;
+}
+
+.rte p {
+  margin: 0 0 18px;
+}
+
+.rte ul {
+  margin: 16px 0 24px 20px;
+}
+
+.rte li {
+  margin: 8px 0;
+}
+
+.rte hr {
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  margin: 32px 0;
+}
