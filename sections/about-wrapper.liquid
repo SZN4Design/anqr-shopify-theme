@@ -1,0 +1,22 @@
+{%- comment -%}
+TEMP: Forces header + footer on About page.
+Remove later once header-group/footer-group are working correctly.
+{%- endcomment -%}
+
+{% section 'header' %}
+
+<main id="MainContent" class="main-content" role="main" tabindex="-1">
+  {% section 'main-page' %}
+</main>
+
+{% section 'footer' %}
+
+{% schema %}
+{
+  "name": "About Wrapper",
+  "settings": [],
+  "presets": [
+    { "name": "About Wrapper" }
+  ]
+}
+{% endschema %}
